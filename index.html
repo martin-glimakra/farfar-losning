@@ -7,6 +7,7 @@
     <title>lösning</title>
 </head>
 <body>
+    <div id="wrapper">
     <h1>Vad är det som går och går</h1>
     <div id="rätt-svar">
         <h2>rätt</h2>
@@ -34,20 +35,21 @@
         const form = document.querySelector("form")
         let rättSvar = document.getElementById("rätt-svar")
         let felSvar = document.getElementById("fel-svar")
+        let antalFelsvar = 0
 
 
         form.addEventListener("submit", function(){
 
         // vilket element?
         let element = document.getElementById("element")
-        console.log("Element: ", element, element.value);
+        // console.log("Element: ", element, element.value);
 
         // obs - ska/bör valideras, ex vilka html element
         let elementValue = element.value;
 
         // vilken text?
         let text = document.getElementById("text");
-        console.log("Text: ", text, text.value);
+        // console.log("Text: ", text, text.value);
 
         // obs - ska/bör valideras, ex textValue.length
         let textValue = text.value;
@@ -61,12 +63,35 @@
         // lägg till elementet i content
         if (text.value === 'farfar') {
             rättSvar.appendChild(htmlElement);
+            slut('grattis')
 
         }
         else {
             felSvar.appendChild(htmlElement);
+            antalFelsvar = antalFelsvar + 1
+            // console.log('antalFelsvar', antalFelsvar)
+            if (antalFelsvar > 2) {
+                slut('game over')
+                console.log('game over')
+            }
         }
         })
+
+        function slut(resultatet) {
+            document.getElementById("wrapper").remove()
+            let body = document.querySelector("body")
+            // console.log('body', body)
+
+            //skapa ett nytt element
+            let slutElement = document.createElement("p")
+
+            //lägg till text
+            slutElement.innerText = resultatet
+
+            //lägg till i dokumentet
+            body.appendChild(slutElement)
+        }
     </script>
+    </div>
 </body>
 </html>
