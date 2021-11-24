@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lösning</title>
+</head>
+<body>
+    <h1>Vad är det som går och går</h1>
+    <div id="rätt-svar">
+        <h2>rätt</h2>
+
+    </div>
+    <div id="fel-svar">
+        <h2>fel</h2>
+    </div>
+    <form action="#">
+        <fieldset>
+            <p>
+                <label for="element">Ange ett element</label>
+                <br>
+                <input type="text" id="element" required>
+            </p>
+            <p>
+                <label for="text">Text innehåll</label>
+                <br>
+                <input type="text" id="text" required>
+            </p>
+            <input type="submit" value="skapa elemet">
+        </fieldset>
+    </form>
+    <script>
+        const form = document.querySelector("form")
+        let rättSvar = document.getElementById("rätt-svar")
+        let felSvar = document.getElementById("fel-svar")
+
+
+        form.addEventListener("submit", function(){
+
+        // vilket element?
+        let element = document.getElementById("element")
+        console.log("Element: ", element, element.value);
+
+        // obs - ska/bör valideras, ex vilka html element
+        let elementValue = element.value;
+
+        // vilken text?
+        let text = document.getElementById("text");
+        console.log("Text: ", text, text.value);
+
+        // obs - ska/bör valideras, ex textValue.length
+        let textValue = text.value;
+
+        // skapa element
+        let htmlElement = document.createElement(elementValue);
+
+        // lägg till text
+        htmlElement.innerText = textValue;
+
+        // lägg till elementet i content
+        if (text.value === 'farfar') {
+            rättSvar.appendChild(htmlElement);
+
+        }
+        else {
+            felSvar.appendChild(htmlElement);
+        }
+        })
+    </script>
+</body>
+</html>
